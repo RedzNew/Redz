@@ -1,6 +1,6 @@
 local Config: any = {
     Team = "Pirates", BringDistance = 250, RaidBringDistance = 1000, TweenSpeed = 220, HunterCapeTweenSpeed = 320,
-    StartMarineFortressUntil = 120, FightHeight = 35,
+    MarineFortressQuestLevel = 120, StartMarineFortressUntil = 120, FightHeight = 35,
     DodgeMobs = true, DodgeRadius = 24, DodgeHeight = 28, UsePortals = true,
     AutoRandomFruit = true, AutoStoreFruit = true,
     HopPlayerNear = true, NearPlayerRadius = 50, NearPlayerCooldown = 60, MaxServerPing = 150,
@@ -617,11 +617,12 @@ local function Main()
         return 4
     end)
     FunctionsHandler.LevelFarm:RegisterMethod("Start", function(h)
-        if SeaIndex == 1 and LocalPlayer.Data.Level.Value < Config.StartMarineFortressUntil then
-            API.Metrics.SelectedCamp = {name = "Chief Petty Officer", mode = "without quest until 150"}
-            SetTask("MainTask", "Early grind to 150 | Chief Petty Officer")
+        local questLevel=Config.MarineFortressQuestLevel
+        if SeaIndex == 1 and LocalPlayer.Data.Level.Value < questLevel then
+            API.Metrics.SelectedCamp = {name = "Chief Petty Officer", mode = "without quest until "..questLevel}
+            SetTask("MainTask", "Early grind to "..questLevel.." | Chief Petty Officer")
             CombatController.Attack("Chief Petty Officer", nil, nil, function()
-                return LocalPlayer.Data.Level.Value >= Config.StartMarineFortressUntil
+                return LocalPlayer.Data.Level.Value >= questLevel
             end)
             return
         end
