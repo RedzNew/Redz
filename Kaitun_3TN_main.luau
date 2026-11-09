@@ -1,6 +1,6 @@
 local Config: any = {
     Team = "Pirates", BringDistance = 250, RaidBringDistance = 1000, TweenSpeed = 220, HunterCapeTweenSpeed = 320,
-    StartMarineFortressUntil = 150, FightHeight = 35,
+    StartMarineFortressUntil = 120, FightHeight = 35,
     DodgeMobs = true, DodgeRadius = 24, DodgeHeight = 28, UsePortals = true,
     AutoRandomFruit = true, AutoStoreFruit = true,
     HopPlayerNear = true, NearPlayerRadius = 50, NearPlayerCooldown = 60, MaxServerPing = 150,
